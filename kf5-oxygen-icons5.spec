@@ -1,21 +1,22 @@
-%define		kdeframever	5.53
+%define		kdeframever	5.56
 %define		qtver		5.9.0
 %define		kfname		oxygen-icons5
 
 Summary:	oxygen icons
 Name:		kf5-%{kfname}
-Version:	5.53.0
+Version:	5.56.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	0a7d75f573c34fc1d2781cea90c2074e
+# Source0-md5:	3a5f3d18cd63785c45e09f6d911d050b
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
 BuildRequires:	cmake >= 2.8.12
 BuildRequires:	gettext-devel
-BuildRequires:	kf5-extra-cmake-modules >= 1.4.0
+BuildRequires:	kf5-extra-cmake-modules >= %{version}
+BuildRequires:	ninja
 BuildRequires:	pkgconfig
 BuildRequires:	qt5-linguist >= %{qtver}
 BuildRequires:	rpmbuild(macros) >= 1.164
@@ -36,16 +37,14 @@ Oxygen-icons is a freedesktop.org compatible icon theme.
 %build
 install -d build
 cd build
-%cmake \
+%cmake -G Ninja \
 	-DKDE_INSTALL_USE_QT_SYS_PATHS=ON \
 	../
-%{__make}
+%ninja_build
 
 %install
 rm -rf $RPM_BUILD_ROOT
-
-%{__make} -C build/ install \
-        DESTDIR=$RPM_BUILD_ROOT
+%ninja_install -C build
 
 %clean
 rm -rf $RPM_BUILD_ROOT
