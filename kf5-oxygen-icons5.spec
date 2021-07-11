@@ -1,15 +1,15 @@
-%define		kdeframever	5.83
+%define		kdeframever	5.84
 %define		qtver		5.9.0
 %define		kfname		oxygen-icons5
 
 Summary:	oxygen icons
 Name:		kf5-%{kfname}
-Version:	5.83.0
+Version:	5.84.0
 Release:	1
 License:	LGPL v2.1+
 Group:		X11/Libraries
 Source0:	http://download.kde.org/stable/frameworks/%{kdeframever}/%{kfname}-%{version}.tar.xz
-# Source0-md5:	aa386f8ea2cbbc7536afce0788e0d65f
+# Source0-md5:	b7410879030aa1da50b7aa44c1a8044e
 URL:		http://www.kde.org/
 BuildRequires:	Qt5Core-devel >= %{qtver}
 BuildRequires:	Qt5Test-devel >= %{qtver}
